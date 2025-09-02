@@ -21,6 +21,7 @@ if len(sys.argv) < 2:
 question = " ".join(sys.argv[1:])
 
 #bro why is the docs lowkey so confusing
+# RAG will come somewhere here at some point but now imma go do the shitty frontend
 
 response = client.responses.create(  #this acc to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
     model="gpt-5-nano",
