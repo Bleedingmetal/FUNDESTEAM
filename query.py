@@ -1,5 +1,4 @@
 import sys
-# from openai import OpenAI
 from dotenv import load_dotenv
 import os
 import ollama
@@ -16,13 +15,16 @@ if len(sys.argv) < 2:
     print("Usage: python query.py 'your question here'")
     sys.exit(1)
 
-# list ollama models
-models = sorted(ollama.list()["models"], key=lambda m: m["model"])
-
-if not models:
+# check if ollama is reachable and list models if so
+try:
+    models = sorted(ollama.list()["models"], key=lambda m: m["model"])
+except Exception as e:
+    print("Ollama service not reachable. Make sure it's running and try again.")
+    sys.exit(1)
+if not models: # handle case where no ollama models are installed
     print("No Ollama models installed. Run 'ollama pull <model>' first.")
     sys.exit(1)
-
+# get model names
 model_names = [m["model"] for m in models]
 
 # if no ollama model is set, ask the user to select one
