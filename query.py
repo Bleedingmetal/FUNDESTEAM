@@ -6,8 +6,7 @@ import os
 # load .env so API key is available
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
-use_stream = os.getenv("USE_STREAM")
-use_stream = os.getenv("USE_STREAM", "false").lower() in ("1", "true", "yes", "on") # set stream mode type to boolean
+use_stream = os.getenv("USE_STREAM", "false").strip().lower() in ("1", "true", "yes", "on")
 
 if not api_key:
     print("OPENAI_API_KEY not found in .env (text aditya so he can setup your key)") #ik ts unecessary but this is for the slow ones 
