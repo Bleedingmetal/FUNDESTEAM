@@ -6,7 +6,8 @@ import os
 # load .env so API key is available
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
-
+use_stream = os.getenv("USE_STREAM")
+use_stream = os.getenv("USE_STREAM", "false").lower() in ("1", "true", "yes", "on") # set stream mode type to boolean
 
 if not api_key:
     print("OPENAI_API_KEY not found in .env (text aditya so he can setup your key)") #ik ts unecessary but this is for the slow ones 
@@ -27,6 +28,14 @@ response = client.responses.create(  #this acc to docs at least should mean that
     model="gpt-5-nano",
     input=question,
     max_output_tokens=950,  # limit output length - so I dont get cooked by the bills
+    stream=use_stream,
 )
 
-print(response.output_text)
+if use_stream:
+    # this code is only valid in stream mode, hence the type ignore
+    for event in response:
+        if event.type == "response.output_text.delta": # type: ignore
+            print(event.delta, end="", flush=True) # type: ignore
+else:
+    # this code is only valid in non-stream mode, hence the type ignore
+    print(response.output_text) # type: ignore
