@@ -1,0 +1,72 @@
+#This is just a standard gitingore imma change it as I need later
+# Compiled Python bytecode 
+*.pyc
+*.pyd
+*.pyo
+__pycache__/
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Editor-specific files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+
+# Build artifacts and distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Django-specific files (if applicable)
+*.log
+local_settings.py
+db.sqlite3
+
+# Flask-specific files (if applicable)
+instance/
+.webassets-cache
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IPython profiles
+profile_default/
+ipython_config.py
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Other common ignore patterns
+*.log
+*.sqlite3
+*.bak
+*.tmp
