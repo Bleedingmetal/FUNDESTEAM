@@ -39,6 +39,7 @@ const RAW_RUNTIME_STATE =
           ["globals", "npm:16.3.0"],\
           ["react", "npm:19.1.1"],\
           ["react-dom", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:19.1.1"],\
+          ["tailwindcss", "npm:4.1.13"],\
           ["typescript", "patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"],\
           ["typescript-eslint", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:8.43.0"],\
           ["vite", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:7.1.5"]\
@@ -1617,6 +1618,7 @@ const RAW_RUNTIME_STATE =
           ["globals", "npm:16.3.0"],\
           ["react", "npm:19.1.1"],\
           ["react-dom", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:19.1.1"],\
+          ["tailwindcss", "npm:4.1.13"],\
           ["typescript", "patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"],\
           ["typescript-eslint", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:8.43.0"],\
           ["vite", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:7.1.5"]\
@@ -3211,6 +3213,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["has-flag", "npm:4.0.0"],\
           ["supports-color", "npm:7.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["tailwindcss", [\
+      ["npm:4.1.13", {\
+        "packageLocation": "../../AppData/Local/Yarn/Berry/cache/tailwindcss-npm-4.1.13-cd23a25efb-10c0.zip/node_modules/tailwindcss/",\
+        "packageDependencies": [\
+          ["tailwindcss", "npm:4.1.13"]\
         ],\
         "linkType": "HARD"\
       }]\
