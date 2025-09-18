@@ -20,7 +20,7 @@ const ChatPage = () => {
 
         // Dummy AI response I will change this to the flask stuff later but rn this is just gonna be like some stuff
         setTimeout(() => {
-            const aiResponse: Message = { id: messages.length + 2, text: "This is a dummy response.", sender: 'ai' };
+            const aiResponse: Message = { id: messages.length + 2, text: "The AI doesnt work rn so heres smth aditya wrote: bye bye ", sender: 'ai' };
             setMessages(prev => [...prev, aiResponse]);
         }, 1000);
     };
