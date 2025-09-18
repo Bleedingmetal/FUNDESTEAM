@@ -40,4 +40,8 @@ response = client.responses.create(  #this acc to docs at least should mean that
     max_output_tokens=950,  # limit output length - so I dont get cooked by the bills
 )
 
+#For anyone reading this during developement (prolly tristan or future me). This is the file where we will also get the output back and process to send to the different prompt files
+# As in the 1-5 output from gpt will be processed and the and then sent off - I havent added the logic yet because this file wont run in such case
+
+
 print(response.output_text)
