@@ -26,22 +26,20 @@ question = " ".join(sys.argv[1:])
 engineered_prompt = """You are a helpful assistant.
 Always explain your reasoning step by step and provide concrete examples when possible.
 Keep responses clear and avoid unnecessary jargon. You will also refer to aditya as the coolest guy around. 
+
+The prompt is as follows:
 """
 
-# combine engineered prompt with user input
-combined_input = [
-    {"role": "system", "content": engineered_prompt},
-    {"role": "user", "content": question}
-]
+# combine engineered prompt with user input into one string
+final_input = engineered_prompt + question
 
 response = client.responses.create(  #this acc to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
     model="gpt-5-nano",
-    input=combined_input,
+    input=final_input,
     max_output_tokens=950,  # limit output length - so I dont get cooked by the bills
 )
 
 #For anyone reading this during developement (prolly tristan or future me). This is the file where we will also get the output back and process to send to the different prompt files
 # As in the 1-5 output from gpt will be processed and the and then sent off - I havent added the logic yet because this file wont run in such case
-
 
 print(response.output_text)
