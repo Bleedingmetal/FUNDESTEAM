@@ -1,5 +1,5 @@
 import sys
-import subprocess  # for running the other scripts
+import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
@@ -52,7 +52,7 @@ try:
     if 1 <= choice <= 5:
         script_name = f"script{choice}.py"
         print(f"Calling {script_name}...")
-        subprocess.run(["python", script_name])  # calls script1.py ... script5.py idk the names yet
+        subprocess.run(["python", script_name])  # calls script1.py ... script5.py idk the names yet but this is the play 1 -5 
     else:
         print("AI output was not between 1 and 5.")
 except ValueError:
