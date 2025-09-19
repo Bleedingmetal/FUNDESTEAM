@@ -11,32 +11,40 @@ export interface Message {
 }
 
 const ChatPage = () => {
-    const [messages, setMessages] = useState<Message[]>([
-        { id: 1, text: "Hello! I'm your AI assistant. How can I help you today?", sender: 'ai' },
-    ]);
+    const [messages, setMessages] = useState<Message[]>([]);
 
     const handleSend = (text: string) => {
         if (!text.trim()) return;
         const newMessage: Message = { id: messages.length + 1, text, sender: 'user' };
         setMessages([...messages, newMessage]);
 
-        // Dummy AI response (replace with Flask later)
+        // Dummy AI response (replace later with backend call)
         setTimeout(() => {
             const aiResponse: Message = {
                 id: messages.length + 2,
-                text: "The AI doesn’t work rn so here’s smth Aditya wrote: bye bye ",
+                text: "This is a placeholder AI response.",
                 sender: 'ai',
             };
             setMessages((prev) => [...prev, aiResponse]);
-        }, 1000);
+        }, 1200);
     };
 
+    const showWelcome = messages.length === 0;
+
     return (
-        <div className="flex flex-col w-full h-screen bg-gray-900 text-white">
+        <div className="flex flex-col w-full h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
             <ChatHeader />
-            <div className="flex-1 flex justify-center">
-                <div className="flex flex-col w-full max-w-3xl border-x border-gray-700">
-                    <ChatWindow messages={messages} />
+            <div className="flex-1 flex justify-center items-center">
+                <div className="flex flex-col w-full max-w-4xl h-[90%] rounded-2xl shadow-xl border border-gray-700 overflow-hidden bg-gray-900/80 backdrop-blur">
+                    {showWelcome ? (
+                        <div className="flex-1 flex items-center justify-center">
+                            <h2 className="text-3xl font-semibold text-gray-300 text-center">
+
+                            </h2>
+                        </div>
+                    ) : (
+                        <ChatWindow messages={messages} />
+                    )}
                     <ChatInput onSend={handleSend} />
                 </div>
             </div>
