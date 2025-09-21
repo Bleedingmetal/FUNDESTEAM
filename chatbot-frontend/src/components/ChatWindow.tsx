@@ -7,10 +7,12 @@ interface ChatWindowProps {
 
 const ChatWindow: React.FC<ChatWindowProps> = ({ messages }) => {
   return (
-    <div className="flex-1 p-4 overflow-y-auto space-y-3">
-      {messages.map((msg) => (
-        <ChatMessage key={msg.id} message={msg} />
-      ))}
+    <div className="h-full flex flex-col">
+      <div className="flex-1 min-h-0 overflow-y-auto px-4 md:px-8 pt-6 space-y-4">
+        {messages.map((m) => (
+          <ChatMessage key={m.id} message={m} />
+        ))}
+      </div>
     </div>
   );
 };
