@@ -6,9 +6,16 @@ interface ChatMessageProps {
 
 const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
     const isUser = message.sender === 'user';
+
     return (
-        <div className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
-            <div className={`px-4 py-2 rounded-lg max-w-xs ${isUser ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-100'}`}>
+        <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} w-full`}>
+            <div
+                className={`px-5 py-3 rounded-2xl max-w-[80%] text-base leading-relaxed ${
+                    isUser
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-br-none'
+                        : 'bg-gray-700 text-gray-100 rounded-bl-none'
+                }`}
+            >
                 {message.text}
             </div>
         </div>
