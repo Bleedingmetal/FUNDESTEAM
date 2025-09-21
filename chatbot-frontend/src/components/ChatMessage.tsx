@@ -9,14 +9,9 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
       <div
-        // Text is aligned to the left, and words that are too long can be automatically wrapped.
-        // The chat box is up to 60% of the screen length.
-        className={`px-5 py-3 rounded-4xl 
-                  text-left leading-relaxed break-words whitespace-pre-wrap
-                  max-w-[60%]
-                ${
-                  isUser ? "bg-blue-600 text-white" : "bg-gray-700 text-white"
-                }`}
+        className={`px-4 py-2 rounded-2xl max-w-[72%] md:max-w-[60%] leading-6 shadow-sm
+                    break-words whitespace-pre-wrap text-left
+          ${isUser ? "bg-blue-600 text-white" : "bg-gray-800 text-gray-100"}`}
       >
         {message.text}
       </div>
@@ -25,3 +20,5 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 };
 
 export default ChatMessage;
+
+
