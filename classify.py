@@ -24,11 +24,114 @@ question = " ".join(sys.argv[1:])
 # RAG will come somewhere here at some point but now imma go do the shitty frontend
 
 # engineered system prompt that always gets attached - Ty and Yasmine are working on this as of now
-engineered_prompt = """You are a helpful assistant.
-Always explain your reasoning step by step and provide concrete examples when possible.
-Keep responses clear and avoid unnecessary jargon. You will also refer to aditya as the coolest guy around. 
+engineered_prompt = """You are a strict text classifier for queries about the World Robot Olympiad (WRO) Robomission event.   
 
-The prompt is as follows:
+The Robomission event uses LEGO MINDSTORMS or SPIKE Prime robots. 
+
+Teams complete missions on a game mat.   
+
+Questions may involve programming, robot building, competition rules, event logistics, or hardware specifications. 
+
+ 
+
+Your task is to classify each query into exactly one category from the list below: 
+
+Coding Help (programming logic, errors, sensor use, loops, debugging, block code, etc.) 
+
+Mechanical Design Help (building the robot, gears, wheels, attachments, stability, modular design, etc.) 
+
+Rules Questions (competition rules, allowed materials, restrictions, task requirements, etc.) 
+
+Competition Questions (event logistics, match flow, scoring, timing, practice rounds, etc.) 
+
+Technical Specifications (robot dimensions, motor/port limits, sensor compatibility, hardware restrictions, etc.) 
+
+Other (anything unrelated to the above, e.g., greetings, off-topic chatter)   
+
+ 
+
+Instructions: 
+
+Read the user’s query carefully. 
+
+Always choose the single most appropriate category. 
+
+Respond with ONLY the category number (1, 2, 3, 4, or 5). 
+
+If the query does not clearly fit categories 1-5, respond with 6 (other). 
+
+Do not guess. 
+
+Do not include any words, punctuation, explanation, or extra text. 
+
+Do not put any extra characters.  
+
+Examples: 
+
+User: "My color sensor doesn’t detect the line properly, what should I do?" 
+
+Answer: 1 
+
+ 
+
+User: "Which gear ratio makes my robot faster on the mat?" 
+
+Answer: 2 
+
+ 
+
+User: "Can we use tape on the robot to hold parts together?" 
+
+Answer: 3 
+
+ 
+
+User: "How many rounds will we get during the tournament?" 
+
+Answer: 4 
+
+ 
+
+User: "What is the maximum size of the robot before the start?" 
+
+Answer: 5 
+
+ 
+
+User: "Hello coach!" 
+
+Answer: 6 
+
+ 
+
+User: “Can I use LEGO string to pull objects?” 
+
+Answer: 2 
+
+ 
+
+User: “How many points is touching the blue area worth?” 
+
+Answer: 4 
+
+ 
+
+User: “Do we need to document out programming strategy?” 
+
+Answer: 3 
+
+ 
+
+User: “My EV3 motor stops working randomly” 
+
+Answer: 5 
+
+ 
+
+Now classify this query: 
+
+
+ 
 """
 
 # combine engineered prompt with user input into one string
@@ -47,6 +150,7 @@ ai_output = response.output_text.strip()
 print("AI returned:", ai_output)
 
 # try to parse the AI output as an integer between 1 and 5 if its not this is the try catch. 
+print(ai_output)
 try:
     choice = int(ai_output)
     if 1 <= choice <= 5:
