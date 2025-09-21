@@ -2,28 +2,26 @@ import { useState } from "react";
 
 interface ChatInputProps {
   onSend: (text: string) => void;
+  started?: boolean;
 }
 
 const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
   const [text, setText] = useState("");
 
   const handleSend = () => {
-    onSend(text);
+    const t = text.trim();
+    if (!t) return;
+    onSend(t);
     setText("");
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
-
   return (
-    <div className="p-4 bg-[#EFF6FF]">
-      <div className="relative">
+    <div className="p-0 bg-transparent">
+      <div
+        className="relative flex items-stretch border border-gray-500/60 
+                      rounded-2xl overflow-hidden bg-white/70 backdrop-blur"
+      >
         <textarea
-          type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
           onInput={(e) => {
@@ -39,18 +37,16 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSend }) => {
             }
           }}
           rows={1}
-          className="w-[90vh] px-4 py-3 pr-15 border border-gray-600 rounded-2xl 
-                      placeholder-gray-500 text-gray-800 [&::-webkit-scrollbar]:hidden
-                      focus:outline-none focus:ring-2 
-                      focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter Your Question"
+          className="w-full flex-1 px-4 py-3 placeholder-gray-500 text-gray-800 
+                     focus:outline-none resize-none leading-6
+                     [&::-webkit-scrollbar]:hidden"
         />
         <button
           onClick={handleSend}
-          className="absolute bottom-[6.8px] right-104  
-                      w-12 h-12 flex items-center justify-center
-                      rounded-2xl bg-[#D6EFFF] text-gray-800 ring-2 ring-blue-400
-                      hover:bg-blue-500 hover:text-white"
+          className="px-5 min-w-[3.5rem] flex items-center justify-center
+                     bg-blue-500 text-white font-medium hover:bg-blue-600
+                     transition-colors border-l border-gray-500/60"
         >
           Send
         </button>
