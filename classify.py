@@ -147,10 +147,10 @@ response = client.responses.create(  #this acc to docs at least should mean that
 # As in the 1-5 output from gpt will be processed and the and then sent off - I havent added the logic yet because this file wont run in such case
 
 ai_output = response.output_text.strip()
-print("AI returned:", ai_output)
+print("AI returned:", ai_output) # for debugging
 
 # try to parse the AI output as an integer between 1 and 5 if its not this is the try catch. 
-print(ai_output)
+
 try:
     choice = int(ai_output)
     if 1 <= choice <= 5:
