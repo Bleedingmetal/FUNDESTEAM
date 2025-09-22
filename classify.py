@@ -15,7 +15,7 @@ if not api_key:
 client = OpenAI(api_key=api_key)
 
 if len(sys.argv) < 2:
-    print("Usage: python query.py 'your question here'")
+    print("Usage: python classify.py 'your question here'")
     sys.exit(1)
 
 question = " ".join(sys.argv[1:])
@@ -36,17 +36,17 @@ Questions may involve programming, robot building, competition rules, event logi
 
 Your task is to classify each query into exactly one category from the list below: 
 
-Coding Help (programming logic, errors, sensor use, loops, debugging, block code, etc.) 
+1. Coding Help (programming logic, errors, sensor use, loops, debugging, block code, etc.) 
 
-Mechanical Design Help (building the robot, gears, wheels, attachments, stability, modular design, etc.) 
+2. Mechanical Design Help (building the robot, gears, wheels, attachments, stability, modular design, etc.) 
 
-Rules Questions (competition rules, allowed materials, restrictions, task requirements, etc.) 
+3. Rules Questions (competition rules, allowed materials, restrictions, task requirements, etc.) 
 
-Competition Questions (event logistics, match flow, scoring, timing, practice rounds, etc.) 
+4. Competition Questions (event logistics, match flow, scoring, timing, practice rounds, etc.) 
 
-Technical Specifications (robot dimensions, motor/port limits, sensor compatibility, hardware restrictions, etc.) 
+5. Technical Specifications (robot dimensions, motor/port limits, sensor compatibility, hardware restrictions, etc.) 
 
-Other (anything unrelated to the above, e.g., greetings, off-topic chatter)   
+6. Other (anything unrelated to the above, e.g., greetings, off-topic chatter)   
 
  
 
@@ -156,8 +156,8 @@ try:
     if 1 <= choice <= 5:
         script_name = f"script{choice}.py"
         print(f"Calling {script_name}...")
-        subprocess.run(["python", script_name])  # calls script1.py ... script5.py idk the names yet but this is the play 1 -5 
+        subprocess.run([sys.executable, script_name, question])  # calls script1.py ... script5.py idk the names yet but this is the play 1 -5 
     else:
         print("AI output was not between 1 and 5.")
 except ValueError:
-    print("AI output was not a valid integer AKA fix prompt.")
+    print("AI output was not a valid integer AKA fix prompt.") 
