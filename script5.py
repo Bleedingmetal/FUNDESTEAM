@@ -4,7 +4,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import os
 
-#This is the TECHNICAL SPECIFICATIONS HELP script that gets called if the classification script classifies a question as technical specifications help
+#This is the TECHNICAL SPECIFICATIONS HELP script that gets called if the classification script classifies a question as technical specifications help.
 
 # load .env so API key is available
 load_dotenv()
