@@ -3,7 +3,7 @@ import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-
+#This is the RULES HELP script that gets called if the classification script classifies a question as rules help
 # load .env so API key is available
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
