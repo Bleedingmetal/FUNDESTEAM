@@ -1185,6 +1185,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:^5.4.1":
+  version: 5.6.2
+  resolution: "chalk@npm:5.6.2"
+  checksum: 10c0/99a4b0f0e7991796b1e7e3f52dceb9137cae2a9dfc8fc0784a550dc4c558e15ab32ed70b14b21b52beb2679b4892b41a0aa44249bcb996f01e125d58477c6976
+  languageName: node
+  linkType: hard
+
 "chatbot-frontend@workspace:.":
   version: 0.0.0-use.local
   resolution: "chatbot-frontend@workspace:."
@@ -1199,6 +1206,7 @@ __metadata:
     globals: "npm:^16.3.0"
     react: "npm:^19.1.1"
     react-dom: "npm:^19.1.1"
+    shadcn-ui: "npm:^0.9.5"
     tailwindcss: "npm:^4.1.13"
     typescript: "npm:^5.9.2"
     typescript-eslint: "npm:^8.39.1"
@@ -2547,6 +2555,17 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 10c0/aca305edfbf2383c22571cb7714f48cadc7ac95371b4b52362fb8eeffdfbc0de0669368b82b2b15978f8848f01d7114da65697e56cd8c37b0dab8c58e543f9ea
+  languageName: node
+  linkType: hard
+
+"shadcn-ui@npm:^0.9.5":
+  version: 0.9.5
+  resolution: "shadcn-ui@npm:0.9.5"
+  dependencies:
+    chalk: "npm:^5.4.1"
+  bin:
+    shadcn-ui: dist/index.js
+  checksum: 10c0/e9b11edaf7f06accfd1093c77510af89014043b4fc807619fb077eea170f46174b705946866ea243d460433772bfe32b6b96058e5b02715dc0f083116273b71d
   languageName: node
   linkType: hard
 

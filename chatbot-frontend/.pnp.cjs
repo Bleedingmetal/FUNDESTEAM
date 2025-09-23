@@ -39,6 +39,7 @@ const RAW_RUNTIME_STATE =
           ["globals", "npm:16.3.0"],\
           ["react", "npm:19.1.1"],\
           ["react-dom", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:19.1.1"],\
+          ["shadcn-ui", "npm:0.9.5"],\
           ["tailwindcss", "npm:4.1.13"],\
           ["typescript", "patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"],\
           ["typescript-eslint", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:8.43.0"],\
@@ -1601,6 +1602,13 @@ const RAW_RUNTIME_STATE =
           ["supports-color", "npm:7.2.0"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:5.6.2", {\
+        "packageLocation": "../../AppData/Local/Yarn/Berry/cache/chalk-npm-5.6.2-ecbd482482-10c0.zip/node_modules/chalk/",\
+        "packageDependencies": [\
+          ["chalk", "npm:5.6.2"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["chatbot-frontend", [\
@@ -1618,6 +1626,7 @@ const RAW_RUNTIME_STATE =
           ["globals", "npm:16.3.0"],\
           ["react", "npm:19.1.1"],\
           ["react-dom", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:19.1.1"],\
+          ["shadcn-ui", "npm:0.9.5"],\
           ["tailwindcss", "npm:4.1.13"],\
           ["typescript", "patch:typescript@npm%3A5.9.2#optional!builtin<compat/typescript>::version=5.9.2&hash=5786d5"],\
           ["typescript-eslint", "virtual:aafb5a02ba2b598d9d55e192494861f74ea3a1e796d63d25ef71c780fa5d4c5c48c4e77ae64e1855e037ecef72cad021d1e42d6223e5fab5a6cb61541a22022f#npm:8.43.0"],\
@@ -3075,6 +3084,16 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../AppData/Local/Yarn/Berry/cache/semver-npm-7.7.2-dfc3bc5ec9-10c0.zip/node_modules/semver/",\
         "packageDependencies": [\
           ["semver", "npm:7.7.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["shadcn-ui", [\
+      ["npm:0.9.5", {\
+        "packageLocation": "../../AppData/Local/Yarn/Berry/cache/shadcn-ui-npm-0.9.5-80bb1d1bea-10c0.zip/node_modules/shadcn-ui/",\
+        "packageDependencies": [\
+          ["chalk", "npm:5.6.2"],\
+          ["shadcn-ui", "npm:0.9.5"]\
         ],\
         "linkType": "HARD"\
       }]\
