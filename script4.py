@@ -139,7 +139,7 @@ Fallback example:
 
 User: “Are we allowed to bring laptops into the pit area?”
 
-Answer: I couldn’t verify the official rule right now. Generally, WRO allows teams to bring laptops to program and adjust robots, but specific regulations may vary by event. Please confirm with the official WRO Robomission Rulebook or your event organizer. 
+Answer: I couldn't verify the official rule right now. Generally, WRO allows teams to bring laptops to program and adjust robots, but specific regulations may vary by event. Please confirm with the official WRO Robomission Rulebook or your event organizer. 
 
  
 

@@ -52,7 +52,7 @@ Your task is to classify each query into exactly one category from the list belo
 
 Instructions: 
 
-Read the user’s query carefully. 
+Read the user's query carefully. 
 
 Always choose the single most appropriate category. 
 
@@ -68,7 +68,7 @@ Do not put any extra characters.
 
 Examples: 
 
-User: "My color sensor doesn’t detect the line properly, what should I do?" 
+User: "My color sensor doesn't detect the line properly, what should I do?" 
 
 Answer: 1 
 
