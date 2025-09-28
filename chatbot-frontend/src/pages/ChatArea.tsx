@@ -1,55 +1,44 @@
-import { useState } from 'react';
-import ChatHeader from '../components/ChatHeader';
-import ChatWindow from '../components/ChatWindow';
-import ChatInput from '../components/ChatInput';
+import { useEffect, useRef } from "react";
+import { ChatMessage } from "./ChatMessage";
+import { WelcomeMessage } from "./WelcomeMessage";
+import { ScrollArea } from "./ui/scroll-area";
 
-/* pls dont mess with this file it took me forever to get all the errors out of here I will NOT hesitate to end you if this breaks*/
-export interface Message {
-    id: number;
-    text: string;
-    sender: 'user' | 'ai';
+interface Message {
+    id: string;
+    content: string;
+    isUser: boolean;
+    timestamp: Date;
 }
 
-const ChatPage = () => {
-    const [messages, setMessages] = useState<Message[]>([]);
+interface ChatAreaProps {
+    messages: Message[];
+}
 
-    const handleSend = (text: string) => {
-        if (!text.trim()) return;
-        const newMessage: Message = { id: messages.length + 1, text, sender: 'user' };
-        setMessages([...messages, newMessage]);
+export function ChatArea({ messages }: ChatAreaProps) {
+    const scrollAreaRef = useRef<HTMLDivElement>(null);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
-        // Dummy AI response (replace later with backend call)
-        setTimeout(() => {
-            const aiResponse: Message = {
-                id: messages.length + 2,
-                text: "This is a placeholder AI response.",
-                sender: 'ai',
-            };
-            setMessages((prev) => [...prev, aiResponse]);
-        }, 1200);
-    };
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
 
-    const showWelcome = messages.length === 0;
+    if (messages.length === 0) {
+        return <WelcomeMessage />;
+    }
 
     return (
-        <div className="flex flex-col w-full h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-            <ChatHeader />
-            <div className="flex-1 flex justify-center items-center">
-                <div className="flex flex-col w-full max-w-4xl h-[90%] rounded-2xl shadow-xl border border-gray-700 overflow-hidden bg-gray-900/80 backdrop-blur">
-                    {showWelcome ? (
-                        <div className="flex-1 flex items-center justify-center">
-                            <h2 className="text-3xl font-semibold text-gray-300 text-center">
-
-                            </h2>
-                        </div>
-                    ) : (
-                        <ChatWindow messages={messages} />
-                    )}
-                    <ChatInput onSend={handleSend} />
-                </div>
+        <ScrollArea className="flex-1">
+            <div ref={scrollAreaRef} className="max-w-4xl mx-auto">
+                {messages.map((message) => (
+                    <ChatMessage
+                        key={message.id}
+                        message={message.content}
+                        isUser={message.isUser}
+                        timestamp={message.timestamp}
+                    />
+                ))}
+                <div ref={messagesEndRef} />
             </div>
-        </div>
+        </ScrollArea>
     );
-};
-
-export default ChatPage;
+}
