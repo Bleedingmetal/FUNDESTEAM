@@ -1,25 +1,45 @@
-import { Message } from '../pages/ChatPage';
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { User, Sparkles } from "lucide-react";
 
 interface ChatMessageProps {
-    message: Message;
+    message: string;
+    isUser: boolean;
+    timestamp: Date;
 }
 
-const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
-    const isUser = message.sender === 'user';
-
+export function ChatMessage({ message, isUser, timestamp }: ChatMessageProps) {
     return (
-        <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} w-full`}>
-            <div
-                className={`px-5 py-3 rounded-2xl max-w-[80%] text-base leading-relaxed ${
-                    isUser
-                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-br-none'
-                        : 'bg-gray-700 text-gray-100 rounded-bl-none'
-                }`}
-            >
-                {message.text}
+        <div className={`flex gap-3 p-4 ${isUser ? 'justify-end' : 'justify-start'}`}>
+            {!isUser && (
+                <Avatar className="w-8 h-8 flex-shrink-0">
+                    <AvatarFallback className="bg-primary">
+                        <Sparkles className="w-4 h-4 text-primary-foreground" />
+                    </AvatarFallback>
+                </Avatar>
+            )}
+
+            <div className={`max-w-[70%] ${isUser ? 'order-first' : ''}`}>
+                <div
+                    className={`rounded-2xl px-4 py-3 ${
+                        isUser
+                            ? 'bg-primary text-primary-foreground ml-auto'
+                            : 'bg-muted text-foreground'
+                    }`}
+                >
+                    <p className="whitespace-pre-wrap">{message}</p>
+                </div>
+                <div className={`text-xs text-muted-foreground mt-1 ${isUser ? 'text-right' : 'text-left'}`}>
+                    {timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </div>
             </div>
+
+            {isUser && (
+                <Avatar className="w-8 h-8 flex-shrink-0">
+                    <AvatarFallback className="bg-secondary">
+                        <User className="w-4 h-4 text-secondary-foreground" />
+                    </AvatarFallback>
+                </Avatar>
+            )}
         </div>
     );
-};
-
-export default ChatMessage;
+}
