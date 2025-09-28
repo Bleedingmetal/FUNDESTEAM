@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Header } from "./components/Header";
-import { ChatArea } from "./components/ChatArea";
+import { ChatArea } from "./pages/ChatArea";
 import { ChatInput } from "./components/ChatInput";
 
 interface Message {
