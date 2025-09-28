@@ -79,7 +79,7 @@ final_input = engineered_prompt + question
 response = client.responses.create(  #this according to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
     model="gpt-5-nano",
     input=final_input,
-    max_output_tokens=5000,  
+    max_output_tokens=30000,  
     #Increased output limit to 5000 since AI was just NOT responding since it was hitting the token limit with reasoning tokens
     # and after using 896 reasoning tokens of the 950 total output tokens available it didnt have enough tokens to emit any text. 5000 is a safe number for testing but the limit will be in the 10ks for
     # the actual thing itself 
