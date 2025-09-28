@@ -47,7 +47,7 @@ User: "What is the resolution of the SPIKE Prime color sensor?" Answer: The SPIK
 
 User: "Are spare parts allowed at the competition table?" Answer: Yes, spare LEGO parts are allowed, but they must comply with the official WRO rules (only LEGO parts from approved sets, no modifications, no glue, no cutting). Source: [WRO Robomission Handbook, Materials section].
 
-Now answer this student’s question: 
+Now answer this student's question: 
 """
 
 # combine engineered prompt with user input into one string
