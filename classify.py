@@ -52,7 +52,7 @@ Your task is to classify each query into exactly one category from the list belo
 
 Instructions: 
 
-Read the user’s query carefully. 
+Read the user's query carefully. 
 
 Always choose the single most appropriate category. 
 
@@ -68,7 +68,7 @@ Do not put any extra characters.
 
 Examples: 
 
-User: "My color sensor doesn’t detect the line properly, what should I do?" 
+User: "My color sensor doesn't detect the line properly, what should I do?" 
 
 Answer: 1 
 
@@ -140,7 +140,7 @@ final_input = engineered_prompt + question
 response = client.responses.create(  #this acc to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
     model="gpt-5-nano",
     input=final_input,
-    max_output_tokens=950,  # limit output length - so I dont get cooked by the bills
+    max_output_tokens=4000,  # limit output length - so I dont get cooked by the bills
 )
 
 #For anyone reading this during developement (prolly tristan or future me). This is the file where we will also get the output back and process to send to the different prompt files

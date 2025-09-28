@@ -3,7 +3,7 @@ import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
-
+#This is the RULES HELP script that gets called if the classification script classifies a question as rules help
 # load .env so API key is available
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
@@ -139,7 +139,7 @@ Fallback example:
 
 User: “Are we allowed to bring laptops into the pit area?”
 
-Answer: I couldn’t verify the official rule right now. Generally, WRO allows teams to bring laptops to program and adjust robots, but specific regulations may vary by event. Please confirm with the official WRO Robomission Rulebook or your event organizer. 
+Answer: I couldn't verify the official rule right now. Generally, WRO allows teams to bring laptops to program and adjust robots, but specific regulations may vary by event. Please confirm with the official WRO Robomission Rulebook or your event organizer. 
 
  
 
@@ -152,7 +152,7 @@ final_input = engineered_prompt + question
 response = client.responses.create(  #this according to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
     model="gpt-5-nano",
     input=final_input,
-    max_output_tokens=5000,  
+    max_output_tokens=30000,  
     #Increased output limit to 5000 since AI was just NOT responding since it was hitting the token limit with reasoning tokens
     # and after using 896 reasoning tokens of the 950 total output tokens available it didnt have enough tokens to emit any text. 5000 is a safe number for testing but the limit will be in the 10ks for
     # the actual thing itself 
