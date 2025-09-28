@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import { ChatMessage } from "./ChatMessage";
-import { WelcomeMessage } from "./WelcomeMessage";
-import { ScrollArea } from "./ui/scroll-area";
+import { ChatMessage } from "../components/ChatMessage";
+import { WelcomeMessage } from "../components/WelcomeMessage";
+import { ScrollArea } from "../components/ui/scroll-area";
 
 interface Message {
     id: string;
