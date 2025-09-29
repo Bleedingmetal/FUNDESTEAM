@@ -19,12 +19,13 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
         }
     };
 
-    const handleKeyPress = (e: React.KeyboardEvent) => {
+    const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             handleSubmit(e);
         }
     };
+
 
     return (
         <div className="border-t border-border bg-background p-4">
@@ -33,7 +34,7 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
                     <Input
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
-                        onKeyPress={handleKeyPress}
+                        onKeyDown={handleKeyDown}
                         placeholder="Type your message here..."
                         disabled={disabled}
                         className="pr-12 py-6 rounded-full bg-input-background border-border focus:ring-2 focus:ring-ring"
