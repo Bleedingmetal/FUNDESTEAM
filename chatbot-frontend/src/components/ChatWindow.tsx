@@ -1,4 +1,4 @@
-import { Message } from '../pages/ChatArea';
+import type { Message } from '../pages/ChatArea';
 import {ChatMessage} from './ChatMessage';
 
 interface ChatWindowProps {

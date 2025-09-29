@@ -3,7 +3,7 @@ import { ChatMessage } from "../components/ChatMessage";
 import { WelcomeMessage } from "../components/WelcomeMessage";
 import { ScrollArea } from "../components/ui/scroll-area";
 
-interface Message {
+export interface Message {
     id: string;
     content: string;
     isUser: boolean;

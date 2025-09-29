@@ -1,6 +1,6 @@
 /* 1. Tailwind Imports */
-@tailwind base;
-@tailwind components;
+@tailwind/preflight;
+
 @tailwind utilities;
 
 /* 2. Theme Variables & Dark Mode */
