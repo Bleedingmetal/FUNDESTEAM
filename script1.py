@@ -73,22 +73,41 @@ User: "How would we outline a program for the 2025 Robomission Senior challenge?
 Now answer this student's question:
 """
 
-# combine engineered prompt with user input into one string
-final_input = engineered_prompt + question
+# Path for script-specific history
+history_file = "history1.json"
 
-response = client.responses.create(  #this according to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
+# Load existing history if it exists
+if os.path.exists(history_file):
+    with open(history_file, "r", encoding="utf-8") as f:
+        history = json.load(f)
+else:
+    history = []
+
+# Build the prompt with engineered prompt + current question + past messages
+history_text = ""
+if history:
+    # Format history for the AI
+    history_text = "\n\nPrevious messages in this thread:\n"
+    for turn in history:
+        role = "User" if turn["role"] == "user" else "Assistant"
+        history_text += f"{role}: {turn['content']}\n"
+
+final_input = engineered_prompt + "\n\nCurrent question:\n" + question + history_text
+
+# Call OpenAI
+response = client.responses.create(
     model="gpt-5-nano",
     input=final_input,
-    max_output_tokens=30000,  
-    #Increased output limit to 5000 since AI was just NOT responding since it was hitting the token limit with reasoning tokens
-    # and after using 896 reasoning tokens of the 950 total output tokens available it didnt have enough tokens to emit any text. 5000 is a safe number for testing but the limit will be in the 10ks for
-    # the actual thing itself 
+    max_output_tokens=30000,
 )
 
+ai_output = response.output_text.strip()
+print(ai_output)  # for debugging
 
+# Append this turn to history
+history.append({"role": "user", "content": question})
+history.append({"role": "assistant", "content": ai_output})
 
-ai_output = response.output_text
-print(ai_output) # for debugging
-#print(response.model_dump_json(indent=2)) - Also for debugging so you can get more data out of it. basically it just dumps the json of what it did uncomment and look for output tokens and status to know whats wrong
-
-
+# Save updated history
+with open(history_file, "w", encoding="utf-8") as f:
+    json.dump(history, f, ensure_ascii=False, indent=2)

@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import subprocess
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -16,10 +17,6 @@ def chat():
         user_message = data.get("message", "")
 
         # Run classify.py with the user message
-        # stdout includes both the category and the script reply
-        # Format expected from classify.py:
-        #   __CAT__:N
-        #   <script reply here>
         result = subprocess.run(
             ["python", "classify.py", user_message],
             capture_output=True,
@@ -30,13 +27,12 @@ def chat():
         if not raw_output:
             return jsonify({"response": "No output from classify.py or its child scripts."})
 
-        # Parse output: first line must start with __CAT__:
+        # Expect first line to be __CAT__:N
         lines = raw_output.splitlines()
         if lines[0].startswith("__CAT__:"):
             category = lines[0].replace("__CAT__:", "").strip()
             reply = "\n".join(lines[1:]).strip()
         else:
-            # Fallback if classify.py didn't include category marker
             category = "0"
             reply = raw_output
 
@@ -45,17 +41,27 @@ def chat():
             histories[category].append({"role": "user", "content": user_message})
             histories[category].append({"role": "assistant", "content": reply})
 
-        return jsonify({"response": reply})
+        return jsonify({
+            "response": reply,
+            "category": category,
+            "history": histories.get(category, [])
+        })
 
     except Exception as e:
         return jsonify({"response": f"Error: {str(e)}"}), 500
-
 
 @app.route("/reset", methods=["POST"])
 def reset():
     """Reset all category histories when frontend reloads."""
     global histories
     histories = {str(i): [] for i in range(1, 6)}
+
+    # Delete per-script history JSON files
+    for i in range(1, 6):
+        path = f"history{i}.json"
+        if os.path.exists(path):
+            os.remove(path)
+
     return jsonify({"status": "ok"})
 
 
