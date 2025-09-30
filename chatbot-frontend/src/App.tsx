@@ -45,7 +45,7 @@ export default function App() {
     } catch (err) {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: "⚠️ Error connecting to backend.",
+        content: "Error connecting to backend.",
         isUser: false,
         timestamp: new Date(),
       };

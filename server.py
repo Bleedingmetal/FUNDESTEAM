@@ -1,43 +1,36 @@
+# server.py
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import subprocess
-import sys
 
 app = Flask(__name__)
-CORS(app)  # allow requests from frontend
+CORS(app)  # allow frontend requests
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.get_json()
-    user_message = data.get("message", "")
-
-    if not user_message:
-        return jsonify({"error": "No message provided"}), 400
-
     try:
-        # Run classify.py with the user message
+        data = request.get_json()
+        user_message = data.get("message", "")
+
+        # Run classify.py with the prompt
+        # stdout and stderr are captured from the entire process tree
         result = subprocess.run(
-            [sys.executable, "classify.py", user_message],
+            ["python", "classify.py", user_message],
             capture_output=True,
             text=True
         )
 
-        # Split all printed lines
-        raw_lines = result.stdout.strip().splitlines()
+        # Check both stdout and stderr (in case child scripts print to stderr)
+        output = (result.stdout + "\n" + result.stderr).strip()
 
-        # Keep only script output (ignore classify debug)
-        script_lines = [
-            line for line in raw_lines
-            if not (line.startswith("AI returned:") or line.startswith("Calling"))
-        ]
+        if not output:
+            output = "No output from classify.py or its child scripts."
 
-        response_text = script_lines[-1] if script_lines else "No response."
-
-        return jsonify({"response": response_text})
+        print("Captured output:", repr(output))  # Debug
+        return jsonify({"response": output})
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
+        return jsonify({"response": f"Error: {str(e)}"}), 500
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    app.run(debug=True)
