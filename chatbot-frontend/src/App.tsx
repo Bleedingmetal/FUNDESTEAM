@@ -10,20 +10,6 @@ interface Message {
   timestamp: Date;
 }
 
-// Mock AI responses for demonstration
-const getAIResponse = (userMessage: string): string => {
-  const responses = [
-    "I understand you're asking about that. Let me help you with some information and insights.",
-    "That's an interesting question! Here are a few thoughts on the topic.",
-    "I'd be happy to assist you with that. Here's what I can tell you.",
-    "Great question! Based on what you're asking, here's my response.",
-    "I can help you with that. Let me provide some relevant information."
-  ];
-  
-  return responses[Math.floor(Math.random() * responses.length)] + 
-    ` You mentioned: "${userMessage}". I'm here to help with any follow-up questions you might have.`;
-};
-
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
@@ -39,25 +25,42 @@ export default function App() {
     setMessages(prev => [...prev, userMessage]);
     setIsTyping(true);
 
-    // Simulate AI thinking time
-    setTimeout(() => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: content }),
+      });
+
+      const data = await res.json();
+
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: getAIResponse(content),
+        content: data.response || "Error: No response from server",
         isUser: false,
         timestamp: new Date(),
       };
 
       setMessages(prev => [...prev, aiMessage]);
+    } catch (err) {
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: "⚠️ Error connecting to backend.",
+        isUser: false,
+        timestamp: new Date(),
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsTyping(false);
-    }, 1000 + Math.random() * 2000); // 1-3 seconds delay
+    }
   };
 
   return (
-    <div className="h-screen flex flex-col bg-background">
-      <Header />
-      <ChatArea messages={messages} />
-      <ChatInput onSendMessage={handleSendMessage} disabled={isTyping} />
-    </div>
+      <div className="h-screen flex flex-col bg-background">
+        <Header />
+        <ChatArea messages={messages} isTyping={isTyping} />
+        <ChatInput onSendMessage={handleSendMessage} disabled={isTyping} />
+      </div>
   );
 }
