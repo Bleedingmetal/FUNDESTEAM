@@ -1,8 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChatMessage } from "./ChatMessage";
 import { WelcomeMessage } from "./WelcomeMessage";
 import { ScrollArea } from "./ui/scroll-area";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
   id: string;
@@ -20,9 +19,24 @@ export function ChatArea({ messages, isTyping }: ChatAreaProps) {
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const [dotCount, setDotCount] = useState(1);
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
+
+  useEffect(() => {
+    if (!isTyping) {
+      setDotCount(1);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setDotCount((prev) => (prev >= 4 ? 1 : prev + 1));
+    }, 500); // change dot every 500ms
+
+    return () => clearInterval(interval);
+  }, [isTyping]);
 
   if (messages.length === 0) {
     return <WelcomeMessage />;
@@ -42,25 +56,13 @@ export function ChatArea({ messages, isTyping }: ChatAreaProps) {
 
           {isTyping && (
               <div className="flex items-center gap-1 p-2">
-                <AnimatePresence>
-                  {[0, 1, 2, 3].map((i) => (
-                      <motion.span
-                          key={i}
-                          className="w-2 h-2 bg-gray-400 rounded-full"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: [0, 1, 0] }}
-                          transition={{
-                            repeat: Infinity,
-                            duration: 1,
-                            repeatDelay: 0,
-                            delay: i * 0.2,
-                          }}
-                      />
-                  ))}
-                </AnimatePresence>
-                <span className="ml-2 text-gray-500 italic text-sm">
-              AI is typing...
-            </span>
+                {[...Array(dotCount)].map((_, i) => (
+                    <span
+                        key={i}
+                        className="w-2 h-2 bg-gray-400 rounded-full animate-pulse"
+                    />
+                ))}
+                <span className="ml-2 text-gray-500 italic text-sm">AI is typing...</span>
               </div>
           )}
 
