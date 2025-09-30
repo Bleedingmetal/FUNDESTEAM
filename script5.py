@@ -3,6 +3,7 @@ import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import json
 
 #This is the TECHNICAL SPECIFICATIONS HELP script that gets called if the classification script classifies a question as technical specifications help.
 
@@ -61,23 +62,45 @@ User: "Are spare parts allowed at the competition table?" Answer: Yes, spare LEG
 
 Now answer this student's question:
 """
+history_file = "history5.json"
 
-# combine engineered prompt with user input into one string
-final_input = engineered_prompt + question
+# Load existing history if it exists and is valid
+history = []
+try:
+    if os.path.exists(history_file):
+        with open(history_file, "r", encoding="utf-8") as f:
+            history = json.load(f)
+except json.JSONDecodeError:
+    # If JSON is empty or invalid, start fresh
+    history = []
 
-response = client.responses.create(  #this according to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
+# Build the prompt with engineered prompt + current question + past messages
+history_text = ""
+if history:
+    history_text = "\n\nPrevious messages in this thread:\n"
+    for turn in history:
+        role = "User" if turn.get("role") == "user" else "Assistant"
+        history_text += f"{role}: {turn.get('content', '')}\n"
+
+final_input = engineered_prompt + "\n\nCurrent question:\n" + question + history_text
+
+# Call OpenAI
+response = client.responses.create(
     model="gpt-5-nano",
     input=final_input,
-    max_output_tokens=30000,  
-    #Increased output limit to 5000 since AI was just NOT responding since it was hitting the token limit with reasoning tokens
-    # and after using 896 reasoning tokens of the 950 total output tokens available it didnt have enough tokens to emit any text. 5000 is a safe number for testing but the limit will be in the 10ks for
-    # the actual thing itself 
+    max_output_tokens=30000,
 )
 
+ai_output = response.output_text.strip()
+print(ai_output)  # for debugging
 
+# Append this turn to history
+history.append({"role": "user", "content": question})
+history.append({"role": "assistant", "content": ai_output})
 
-ai_output = response.output_text
-print(ai_output) # for debugging
-#print(response.model_dump_json(indent=2)) - Also for debugging so you can get more data out of it. basically it just dumps the json of what it did uncomment and look for output tokens and status to know whats wrong
-
-
+# Save updated history safely
+try:
+    with open(history_file, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+except Exception as e:
+    print(f"Error saving history: {e}")
