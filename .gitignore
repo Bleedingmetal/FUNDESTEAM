@@ -70,3 +70,4 @@ ipython_config.py
 *.sqlite3
 *.bak
 *.tmp
+instance/

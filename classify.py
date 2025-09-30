@@ -147,7 +147,7 @@ response = client.responses.create(  #this acc to docs at least should mean that
 # As in the 1-5 output from gpt will be processed and the and then sent off - I havent added the logic yet because this file wont run in such case
 
 ai_output = response.output_text.strip()
-print("AI returned:", ai_output) # for debugging
+#print("AI returned:", ai_output) # for debugging
 
 # try to parse the AI output as an integer between 1 and 5 if its not this is the try catch. 
 
@@ -155,7 +155,7 @@ try:
     choice = int(ai_output)
     if 1 <= choice <= 5:
         script_name = f"script{choice}.py"
-        print(f"Calling {script_name}...")
+        #print(f"Calling {script_name}...")
         subprocess.run([sys.executable, script_name, question])  # calls script1.py ... script5.py idk the names yet but this is the play 1 -5 
     else:
         print("AI output was not between 1 and 5.")

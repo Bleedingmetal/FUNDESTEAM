@@ -88,7 +88,7 @@ response = client.responses.create(  #this according to docs at least should mea
 
 
 ai_output = response.output_text
-print("AI returned:", ai_output) # for debugging
+print(ai_output) # for debugging
 #print(response.model_dump_json(indent=2)) - Also for debugging so you can get more data out of it. basically it just dumps the json of what it did uncomment and look for output tokens and status to know whats wrong
 
 
