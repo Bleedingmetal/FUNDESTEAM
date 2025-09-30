@@ -93,9 +93,16 @@ try:
     choice = int(ai_output)
     if 1 <= choice <= 5:
         script_name = f"script{choice}.py"
-        #print(f"Calling {script_name}...")
-        subprocess.run([sys.executable, script_name, question])  # calls script1.py ... script5.py idk the names yet but this is the play 1 -5 
+        # Run the chosen script with the same question
+        result = subprocess.run([sys.executable, script_name, question],
+                                capture_output=True,
+                                text=True)
+        script_reply = (result.stdout + "\n" + result.stderr).strip()
+
+        # Print category marker + script output for server.py to parse
+        print(f"__CAT__:{choice}")
+        print(script_reply)
     else:
-        print("AI output was not between 1 and 5.")
+        print("Invalid category output:", ai_output)
 except ValueError:
-    print("AI output was not a valid integer AKA fix prompt.") 
+    print("Classifier did not return an integer:", ai_output)
