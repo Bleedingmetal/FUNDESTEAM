@@ -3,6 +3,7 @@ import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import json
 
 # This is the CODING HELP script that gets called if the classification script classifies a question as coding help.
 
@@ -76,21 +77,24 @@ Now answer this student's question:
 # Path for script-specific history
 history_file = "history1.json"
 
-# Load existing history if it exists
-if os.path.exists(history_file):
-    with open(history_file, "r", encoding="utf-8") as f:
-        history = json.load(f)
-else:
+
+# Load existing history if it exists and is valid
+history = []
+try:
+    if os.path.exists(history_file):
+        with open(history_file, "r", encoding="utf-8") as f:
+            history = json.load(f)
+except json.JSONDecodeError:
+    # If JSON is empty or invalid, start fresh
     history = []
 
 # Build the prompt with engineered prompt + current question + past messages
 history_text = ""
 if history:
-    # Format history for the AI
     history_text = "\n\nPrevious messages in this thread:\n"
     for turn in history:
-        role = "User" if turn["role"] == "user" else "Assistant"
-        history_text += f"{role}: {turn['content']}\n"
+        role = "User" if turn.get("role") == "user" else "Assistant"
+        history_text += f"{role}: {turn.get('content', '')}\n"
 
 final_input = engineered_prompt + "\n\nCurrent question:\n" + question + history_text
 
@@ -108,6 +112,10 @@ print(ai_output)  # for debugging
 history.append({"role": "user", "content": question})
 history.append({"role": "assistant", "content": ai_output})
 
-# Save updated history
-with open(history_file, "w", encoding="utf-8") as f:
-    json.dump(history, f, ensure_ascii=False, indent=2)
+# Save updated history safely
+try:
+    with open(history_file, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+except Exception as e:
+    print(f"Error saving history: {e}")
+

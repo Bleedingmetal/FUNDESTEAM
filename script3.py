@@ -3,6 +3,7 @@ import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import json
 #This is the RULES HELP script that gets called if the classification script classifies a question as rules help
 # load .env so API key is available
 load_dotenv()
@@ -147,36 +148,43 @@ Now answer this question:
 """
 history_file = "history3.json"
 
-# Load history if exists
-if os.path.exists(history_file):
-    with open(history_file, "r", encoding="utf-8") as f:
-        history = json.load(f)
-else:
+# Load existing history if it exists and is valid
+history = []
+try:
+    if os.path.exists(history_file):
+        with open(history_file, "r", encoding="utf-8") as f:
+            history = json.load(f)
+except json.JSONDecodeError:
+    # If JSON is empty or invalid, start fresh
     history = []
 
-# Build history text to append to prompt
+# Build the prompt with engineered prompt + current question + past messages
 history_text = ""
 if history:
     history_text = "\n\nPrevious messages in this thread:\n"
     for turn in history:
-        role = "User" if turn["role"] == "user" else "Assistant"
-        history_text += f"{role}: {turn['content']}\n"
+        role = "User" if turn.get("role") == "user" else "Assistant"
+        history_text += f"{role}: {turn.get('content', '')}\n"
 
-# Combine prompt
-final_input = engineered_prompt + "\n" + question + history_text
+final_input = engineered_prompt + "\n\nCurrent question:\n" + question + history_text
 
 # Call OpenAI
 response = client.responses.create(
     model="gpt-5-nano",
     input=final_input,
-    max_output_tokens=30000
+    max_output_tokens=30000,
 )
 
-ai_output = response.output_text
-print(ai_output)
+ai_output = response.output_text.strip()
+print(ai_output)  # for debugging
 
-# Append to history and save
+# Append this turn to history
 history.append({"role": "user", "content": question})
 history.append({"role": "assistant", "content": ai_output})
-with open(history_file, "w", encoding="utf-8") as f:
-    json.dump(history, f, ensure_ascii=False, indent=2)
+
+# Save updated history safely
+try:
+    with open(history_file, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+except Exception as e:
+    print(f"Error saving history: {e}")

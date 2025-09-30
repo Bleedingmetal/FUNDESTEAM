@@ -3,6 +3,7 @@ import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
 import os
+import json
 
 # load .env so API key is available
 load_dotenv()
@@ -20,6 +21,21 @@ if len(sys.argv) < 2:
 
 question = " ".join(sys.argv[1:])
 
+last_script_file = "last_script.json"
+
+# Load last used script or initialize it
+if os.path.exists(last_script_file):
+    try:
+        with open(last_script_file, "r", encoding="utf-8") as f:
+            last_script = json.load(f).get("last_script", None)
+    except Exception:
+        last_script = None
+else:
+    last_script = None
+    # Create the file with default None
+    with open(last_script_file, "w", encoding="utf-8") as f:
+        json.dump({"last_script": None}, f)
+
 #bro why is the docs lowkey so confusing
 # RAG will come somewhere here at some point but now imma go do the shitty frontend
 
@@ -35,10 +51,11 @@ Your task is to classify each query into exactly one category from the list belo
 4. Competition Questions (event logistics, match flow, scoring, timing, practice rounds, etc.) 
 5. Technical Specifications (robot dimensions, motor/port limits, sensor compatibility, hardware restrictions, etc.) 
 6. Other (anything unrelated to the above, e.g., greetings, off-topic chatter)
+7. Ambiguous/Follow up (If something is like "yes do that" or "I agree" or "what do you think" , "how so", "do it" - basically if its not a question or a statement that can be classified into 1-5)
 
 Instructions: - Read the user's query carefully. - If there is an image, inspect the image and determine the content. 
 - Always choose the single most appropriate category based on the text and image. 
-- Respond with ONLY the category number (1, 2, 3, 4, or 5). 
+- Respond with ONLY the category number (1, 2, 3, 4, 5, or 7). 
 - If the query does not clearly fit categories 1-5, respond with 6 (other). 
 - Do not guess. 
 - Do not include any words, punctuation, explanation, or extra text. 
@@ -91,6 +108,11 @@ ai_output = response.output_text.strip()
 
 try:
     choice = int(ai_output)
+
+    # If AI returns 7 (ambiguous), fallback to last used script
+    if choice == 7 and last_script:
+        choice = last_script
+
     if 1 <= choice <= 5:
         script_name = f"script{choice}.py"
         # Run the chosen script with the same question
@@ -99,10 +121,16 @@ try:
                                 text=True)
         script_reply = (result.stdout + "\n" + result.stderr).strip()
 
-        # Print category marker + script output for server.py to parse
+        # Print category marker + script output for server.py
         print(f"__CAT__:{choice}")
         print(script_reply)
+
+        # Save the last used script number
+        with open(last_script_file, "w", encoding="utf-8") as f:
+            json.dump({"last_script": choice}, f)
+
     else:
         print("Invalid category output:", ai_output)
+
 except ValueError:
     print("Classifier did not return an integer:", ai_output)
