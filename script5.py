@@ -61,23 +61,38 @@ User: "Are spare parts allowed at the competition table?" Answer: Yes, spare LEG
 
 Now answer this student's question:
 """
+history_file = "history5.json"
 
-# combine engineered prompt with user input into one string
-final_input = engineered_prompt + question
+# Load history if exists
+if os.path.exists(history_file):
+    with open(history_file, "r", encoding="utf-8") as f:
+        history = json.load(f)
+else:
+    history = []
 
-response = client.responses.create(  #this according to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
+# Build history text to append to prompt
+history_text = ""
+if history:
+    history_text = "\n\nPrevious messages in this thread:\n"
+    for turn in history:
+        role = "User" if turn["role"] == "user" else "Assistant"
+        history_text += f"{role}: {turn['content']}\n"
+
+# Combine prompt
+final_input = engineered_prompt + "\n" + question + history_text
+
+# Call OpenAI
+response = client.responses.create(
     model="gpt-5-nano",
     input=final_input,
-    max_output_tokens=30000,  
-    #Increased output limit to 5000 since AI was just NOT responding since it was hitting the token limit with reasoning tokens
-    # and after using 896 reasoning tokens of the 950 total output tokens available it didnt have enough tokens to emit any text. 5000 is a safe number for testing but the limit will be in the 10ks for
-    # the actual thing itself 
+    max_output_tokens=30000
 )
 
-
-
 ai_output = response.output_text
-print(ai_output) # for debugging
-#print(response.model_dump_json(indent=2)) - Also for debugging so you can get more data out of it. basically it just dumps the json of what it did uncomment and look for output tokens and status to know whats wrong
+print(ai_output)
 
-
+# Append to history and save
+history.append({"role": "user", "content": question})
+history.append({"role": "assistant", "content": ai_output})
+with open(history_file, "w", encoding="utf-8") as f:
+    json.dump(history, f, ensure_ascii=False, indent=2)
