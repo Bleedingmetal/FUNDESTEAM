@@ -1,0 +1,10 @@
+[
+  {
+    "role": "user",
+    "content": "can I use tape to hold together my robot?"
+  },
+  {
+    "role": "assistant",
+    "content": "No. In WRO Robomission 2025 rules, you may not use tape (or any non-LEGO fixing material) to hold pieces together. Only LEGO parts may be used to build and secure the robot. [Source: WRO Robomission Rules 2025, Section 3.1]\n\nOfficial source: https://www.wro-association.org/en/rules/robomission-2025\n\nIf you’re unsure, please double-check the current rulebook or ask your event organizer for confirmation."
+  }
+]
