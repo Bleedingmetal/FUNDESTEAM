@@ -93,9 +93,9 @@ Now classify this query:
 final_input = engineered_prompt + question
 
 response = client.responses.create(  #this acc to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
-    model="gpt-5-nano",
+    model="gpt-5", #using gpt-5 since it is the only one that supports multimodal as of now. 
     input=final_input,
-    max_output_tokens=4000,  # limit output length - so I dont get cooked by the bills
+    #max_output_tokens=4000,  # limit output length - so I dont get cooked by the bills
 )
 
 #For anyone reading this during developement (prolly tristan or future me). This is the file where we will also get the output back and process to send to the different prompt files
@@ -130,7 +130,7 @@ try:
             json.dump({"last_script": choice}, f)
 
     else:
-        print("Invalid category output:", ai_output)
+        print("I cant't answer that right now please ask me something WRO related")
 
 except ValueError:
     print("Classifier did not return an integer:", ai_output)
