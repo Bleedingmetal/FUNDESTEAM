@@ -117,8 +117,10 @@ try:
         script_name = f"script{choice}.py"
         # Run the chosen script with the same question
         result = subprocess.run([sys.executable, script_name, question],
-                                capture_output=True,
-                                text=True)
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE,
+                                text=True,
+                                encoding="utf-8")
         script_reply = (result.stdout + "\n" + result.stderr).strip()
 
         # Print category marker + script output for server.py

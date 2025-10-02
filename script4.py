@@ -1,4 +1,5 @@
 import sys
+sys.stdout.reconfigure(encoding="utf-8") 
 import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
