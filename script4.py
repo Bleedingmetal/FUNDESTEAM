@@ -56,6 +56,9 @@ If you cannot find an exact rule, DO NOT guess.
 
 If no internet connection or source is available, use fallback behavior 
 
+Always respond using only letters, numbers, and basic punctuation (.,!?-:) and include accented letters if needed for Spanish. Do not use emojis, fancy dashes, or other special Unicode characters.
+
+
  
 
 Fallback behavior: 
