@@ -172,7 +172,7 @@ final_input = engineered_prompt + "\n\nCurrent question:\n" + question + history
 response = client.responses.create(
     model="gpt-5-nano",
     input=final_input,
-    max_output_tokens=30000,
+    #max_output_tokens=30000,
 )
 
 ai_output = response.output_text.strip()

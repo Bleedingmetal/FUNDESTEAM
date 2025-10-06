@@ -71,3 +71,11 @@ ipython_config.py
 *.bak
 *.tmp
 instance/
+
+#common files 
+history1.json
+history2.json
+history3.json
+history4.json
+history5.json
+last_script.json
