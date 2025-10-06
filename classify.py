@@ -52,10 +52,11 @@ Your task is to classify each query into exactly one category from the list belo
 5. Technical Specifications (robot dimensions, motor/port limits, sensor compatibility, hardware restrictions, etc.) 
 6. Other (anything unrelated to the above, e.g., greetings, off-topic chatter)
 7. Ambiguous/Follow up (If something is like "yes do that" or "I agree" or "what do you think" , "how so", "do it" - basically if its not a question or a statement that can be classified into 1-5)
+8. Who Created you (If someone asks who created you or who made you or who built you return 8 make sure you are absolutely sure its this question and not something else)
 
 Instructions: - Read the user's query carefully. - If there is an image, inspect the image and determine the content. 
 - Always choose the single most appropriate category based on the text and image. 
-- Respond with ONLY the category number (1, 2, 3, 4, 5, or 7). 
+- Respond with ONLY the category number (1, 2, 3, 4, 5, or 7 or 8). 
 - If the query does not clearly fit categories 1-5, respond with 6 (other). 
 - Do not guess. 
 - Do not include any words, punctuation, explanation, or extra text. 
@@ -112,6 +113,10 @@ try:
     # If AI returns 7 (ambiguous), fallback to last used script
     if choice == 7 and last_script:
         choice = last_script
+
+    if choice == 8:
+        print("I was created by a team of WPI Students on their IQP in 2025, comprising of Aditya Manoj Krishna, Tyler Mu, Tristan Letourneau, Yasmine Muniz-Diaz, and Junmin Zhang. I was coded by Aditya Manoj Krishna who wrote all of my source code and I was prompted by Tyler Mu and Yasmine Muniz-Diaz. I am powered OpenAI's GPT-5 models.")
+        sys.exit(0)
 
     if 1 <= choice <= 5:
         script_name = f"script{choice}.py"
