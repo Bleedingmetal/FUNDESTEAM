@@ -48,11 +48,11 @@ start.bat
 
 You will need:
 
-* **Visual Studio Code** – for running and editing code
-* **Git** – for downloading the project
-* **Python 3.10.0** – backend runtime
-* **Node.js 24.7.0** – frontend runtime
-* **Yarn 4.9.1** – frontend package manager
+* **Visual Studio Code** &ndash; for running and editing code
+* **Git** &ndash; for downloading the project
+* **Python 3.10.0** &ndash; backend runtime
+* **Node.js 24.7.0** &ndash; frontend runtime
+* **Yarn 4.9.1** &ndash; frontend package manager
 
 All instructions below assume Windows. For macOS/Linux, replace paths accordingly.
 
@@ -93,7 +93,7 @@ All instructions below assume Windows. For macOS/Linux, replace paths accordingl
    ```bash
    git clone https://github.com/Bleedingmetal/FUNDESTEAM.git
    ```
-4. Open VS Code → File → Open Folder → select **FUNDESTEAM**
+4. Open VS Code &rarr; File &rarr; Open Folder &rarr; select **FUNDESTEAM**
 
 ---
 
@@ -114,7 +114,7 @@ All instructions below assume Windows. For macOS/Linux, replace paths accordingl
 
 ### 6. Set Up the Backend
 
-1. In VS Code, open a terminal (**Ctrl + `**).
+1. In VS Code, open a terminal (**Ctrl + `** or accesible from the navbar above).
 
 2. Create a virtual environment:
 
@@ -329,12 +329,14 @@ A: The chatbot is tested with Python 3.10.0. Later versions *might* work, but if
 A: These versions are recommended to avoid compatibility issues. Other versions *might* work, but the commands and scripts are verified for these exact versions.
 
 **Q: What if port 3000 or 5000 is already in use?**
+
 A: You’ll need to free the port or change the frontend/backend port. For example:
 
 * Frontend: `vite --port 3001`
-* Backend: edit `server.py` → `app.run(port=5001)`
+* Backend: edit `server.py` &rarr; `app.run(port=5001)`
 
 **Q: How do I add my OpenAI API key correctly?**
+
 A: Rename `.env.example` to `.env` and replace the placeholder with your key like this:
 
 ```
@@ -357,7 +359,7 @@ A: Yes! Paths for activating the virtual environment differ:
 **Q: How do I stop the chatbot?**
 A: Press `Ctrl + C` in any terminal running the app. Both frontend and backend servers will stop.
 
-> **Tip for beginners:** Don’t worry if this seems complicated at first—just follow each step carefully and you’ll have the chatbot running in under 30 minutes!
+> **Tip for beginners:** Don’t worry if this seems complicated at first &ndash; just follow each step carefully and you’ll have the chatbot running in under 30 minutes!
 
 ---
 
