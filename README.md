@@ -10,7 +10,6 @@
 [![GitHub forks](https://img.shields.io/github/forks/Bleedingmetal/FUNDESTEAM)](https://github.com/Bleedingmetal/FUNDESTEAM/network/members)
 [![GitHub stars](https://img.shields.io/github/stars/Bleedingmetal/FUNDESTEAM)](https://github.com/Bleedingmetal/FUNDESTEAM/stargazers)
 ![Last Commit](https://img.shields.io/github/last-commit/Bleedingmetal/FUNDESTEAM)
-![Repo Size](https://img.shields.io/github/repo-size/Bleedingmetal/FUNDESTEAM)
 ![OpenAI API](https://img.shields.io/badge/OpenAI-Required-green)
 
 
