@@ -12,7 +12,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Bleedingmetal/FUNDESTEAM)
 ![Repo Size](https://img.shields.io/github/repo-size/Bleedingmetal/FUNDESTEAM)
 ![OpenAI API](https://img.shields.io/badge/OpenAI-Required-green)
-![Lines of Code](https://img.shields.io/tokei/lines/github/Bleedingmetal/FUNDESTEAM)
+
 
 
 
