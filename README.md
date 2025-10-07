@@ -1,5 +1,23 @@
 # FUNDESTEAM Chatbot
 
+
+![Python](https://img.shields.io/badge/Python-3.10.0-blue)
+![Node](https://img.shields.io/badge/Node-24.7.0-green)
+![Yarn](https://img.shields.io/badge/Yarn-4.9.1-purple)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+[![GitHub issues](https://img.shields.io/github/issues/Bleedingmetal/FUNDESTEAM)](https://github.com/Bleedingmetal/FUNDESTEAM/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Bleedingmetal/FUNDESTEAM)](https://github.com/Bleedingmetal/FUNDESTEAM/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Bleedingmetal/FUNDESTEAM)](https://github.com/Bleedingmetal/FUNDESTEAM/stargazers)
+![Last Commit](https://img.shields.io/github/last-commit/Bleedingmetal/FUNDESTEAM)
+![Repo Size](https://img.shields.io/github/repo-size/Bleedingmetal/FUNDESTEAM)
+![OpenAI API](https://img.shields.io/badge/OpenAI-Required-green)
+![Lines of Code](https://img.shields.io/tokei/lines/github/Bleedingmetal/FUNDESTEAM)
+
+
+
+
+
 An AI-powered tutoring assistant built with **React + TypeScript (Vite)** on the frontend and **Python + Flask** on the backend. The chatbot is designed to help students prepare for and learn concepts related to the **WRO (World Robot Olympiad)** competition.
 
 This guide provides both a **Quick Setup** for experienced users and a **Full Beginner Setup** for those with no technical background.
@@ -9,7 +27,7 @@ This guide provides both a **Quick Setup** for experienced users and a **Full Be
 1. [Before You Begin](#before-you-begin)
 2. [How to Get Your OpenAI API Key](#how-to-get-your-openai-api-key)
 3. [System Requirements](#system-requirements)
-4. [Quick Setup (for experienced users)](#quick-setup-for-experienced-users)
+4. [Quick Setup (for experienced users)](#quick-setup-for-experienced-users)x 
 5. [Full Detailed Setup (for beginners)](#full-detailed-setup-for-beginners)
 
    * [1. Required Tools](#1-required-tools)
