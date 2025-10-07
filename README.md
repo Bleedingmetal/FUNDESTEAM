@@ -6,11 +6,11 @@ This guide provides both a **Quick Setup** for experienced users and a **Full Be
 
 ### Table of Contents 
 
-
-
-1. [System Requirements](#system-requirements)
-2. [Quick Setup (for experienced users)](#quick-setup-for-experienced-users)
-3. [Full Detailed Setup (for beginners)](#full-detailed-setup-for-beginners)
+1. [Before You Begin](#before-you-begin)
+2. [How to Get Your OpenAI API Key](#how-to-get-your-openai-api-key)
+3. [System Requirements](#system-requirements)
+4. [Quick Setup (for experienced users)](#quick-setup-for-experienced-users)
+5. [Full Detailed Setup (for beginners)](#full-detailed-setup-for-beginners)
 
    * [1. Required Tools](#1-required-tools)
    * [2. Install Visual Studio Code](#2-install-visual-studio-code)
@@ -48,18 +48,31 @@ This guide provides both a **Quick Setup** for experienced users and a **Full Be
 26. [Author](#author)
 27. [License (MIT)](#license-mit)
 
+
+---
+## Before You Begin
+
+* Make sure you have a stable internet connection
+* At least 2 GB free on your computer
+* An OpenAI account/ an email you can use to create an account
+
 ---
 
-Notes:
+### How to Get Your OpenAI API Key
 
-* Anchors on GitHub are generated from the exact heading text. If you later rename a heading, update the TOC accordingly.
-* If any link doesn't jump correctly after you paste this, add an explicit anchor to the heading you changed, for example:
+To connect the FUNDESTEAM Chatbot with OpenAI services, follow these steps:
 
-  ```markdown
-  ## 17. Adding a New Category {#17-adding-a-new-category}
-  ```
+1. Go to [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys).
+2. Log in or create an OpenAI account.
+3. Click **Create new secret key**.
+4. Copy and save the generated key in notepad etc. &ndash; you will **not** be able to view it again.
 
-Drop this block in place of your existing Table of Contents.
+> Note: Do **NOT** share your API key publicly or commit it to GitHub.
+
+
+
+
+
 
 
 ## System Requirements
@@ -72,7 +85,7 @@ Drop this block in place of your existing Table of Contents.
 
 ---
 
-## Quick Setup (for experienced users)
+### Quick Setup (For Experienced Users)
 
 If you already have **Python 3.10.0**, **Node.js 24.7.0**, and **Yarn 4.9.1** installed:
 
@@ -98,7 +111,7 @@ start.bat
 
 ---
 
-## Full Detailed Setup (for beginners)
+### Full Detailed Setup (For Beginners)
 
 ### 1. Required Tools
 
@@ -321,7 +334,12 @@ FUNDESTEAM/
 │   ├── yarn.lock             # Yarn lock file
 │   └── ...                   # Other frontend files
 │
-├── server.py                 # Flask backend
+├── server.py                 # Flask backend 
+├── script1.py                # Script with prompt geared towards Coding help
+├── script2.py                # Script with prompt geared towards Mechanical Design help
+├── script3.py                # Script with prompt geared towards WRO Rules help
+├── script4.py                # Script with prompt geared towards WRO Competition help
+├──  script5.py               # Script with prompt geared towards Technical Specifications help
 ├── classify.py               # GPT-powered classification
 ├── requirements.txt          # Python dependencies
 ├── .env.example              # Example environment file
@@ -403,7 +421,7 @@ A: Rename `.env.example` to `.env` and replace the placeholder with your key lik
 OPENAI_API_KEY=your_api_key_here
 ```
 
-**Q: The chatbot doesn’t respond in the frontend—what should I check?**
+**Q: The chatbot doesn’t respond in the frontend &mdash; what should I check?**
 A: Make sure:
 
 1. The backend is running (`python server.py`)
@@ -423,6 +441,8 @@ A: Press `Ctrl + C` in any terminal running the app. Both frontend and backend s
 
 ---
 ### 17. Adding a New Category 
+
+>**Important: Do not reuse numbers reserved for debugging (6, 7, 8).**
 
 You can add new categories to the chatbot by creating a new script (`script9.py`) and updating `classify.py` so the AI can route questions correctly.
 
@@ -544,7 +564,7 @@ Answer: Step-by-step reasoning or pseudocode. Only provide Python code if explic
 
 * Make sure new categories added to `engineered_prompt` match exactly the number used in `classify.py` (e.g., 9 &rarr; script9.py).
 * Explicitly describe what kinds of questions should go to the new category, so the AI can confidently select it.
->**Important: Do not reuse numbers reserved for debugging (6, 7, 8).**
+
 
 ---
 ### *Advanced Backend Guidlines*
