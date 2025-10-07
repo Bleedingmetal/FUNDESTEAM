@@ -96,7 +96,7 @@ final_input = engineered_prompt + question
 response = client.responses.create(  #this acc to docs at least should mean that im no longer on the old format and hopefully it supports multimodal inputs later on
     model="gpt-5-nano",
     input=final_input,
-    #max_output_tokens=4000,  # limit output length - so I dont get cooked by the bills
+    #max_output_tokens=4000,  # limit output length can be uncomented as needed - so I dont get cooked by the bills
 )
 
 #For anyone reading this during developement (prolly tristan or future me). This is the file where we will also get the output back and process to send to the different prompt files
