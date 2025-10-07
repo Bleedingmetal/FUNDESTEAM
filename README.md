@@ -314,10 +314,57 @@ Press `Ctrl + C` in any terminal running the app.
 You now have the **FUNDESTEAM Chatbot** fully configured and running — a complete tutor for helping students learn and prepare for the WRO competition.
 
 ---
+### 16. Common Questions for Beginners
+
+**Q: Do I need administrator rights to install Python, Node.js, or Git?**
+
+A: Usually not, but some Windows setups may ask for admin permission. If prompted, click “Yes” to continue installation.
+
+**Q: What if my Python version is different from 3.10.0?**
+
+A: The chatbot is tested with Python 3.10.0. Later versions *might* work, but if you run into errors, install 3.10.0 to match the guide.
+
+**Q: Do I have to install exactly Node.js 24.7.0 and Yarn 4.9.1?**
+
+A: These versions are recommended to avoid compatibility issues. Other versions *might* work, but the commands and scripts are verified for these exact versions.
+
+**Q: What if port 3000 or 5000 is already in use?**
+A: You’ll need to free the port or change the frontend/backend port. For example:
+
+* Frontend: `vite --port 3001`
+* Backend: edit `server.py` → `app.run(port=5001)`
+
+**Q: How do I add my OpenAI API key correctly?**
+A: Rename `.env.example` to `.env` and replace the placeholder with your key like this:
+
+```
+OPENAI_API_KEY=your_api_key_here
+```
+
+**Q: The chatbot doesn’t respond in the frontend—what should I check?**
+A: Make sure:
+
+1. The backend is running (`python server.py`)
+2. The frontend is running (`yarn dev`)
+3. Your `.env` has a valid API key
+
+**Q: Can I run this on macOS or Linux?**
+A: Yes! Paths for activating the virtual environment differ:
+
+* macOS/Linux: `source venv/bin/activate`
+* Windows: `venv\Scripts\activate`
+
+**Q: How do I stop the chatbot?**
+A: Press `Ctrl + C` in any terminal running the app. Both frontend and backend servers will stop.
+
+> **Tip for beginners:** Don’t worry if this seems complicated at first—just follow each step carefully and you’ll have the chatbot running in under 30 minutes!
+
+---
 
 ### Author
 
 **BleedingMetal**
+
 [GitHub Repository](https://github.com/Bleedingmetal/FUNDESTEAM)
 
 ---
