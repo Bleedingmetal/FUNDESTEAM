@@ -638,7 +638,171 @@ response = client.responses.create(
 * Consider adding a `.gitignore` entry for any local configuration containing secrets.
 
 ---
-### 24. Github Workflow
+### 24. GitHub Workflow & Project Management
+
+This section outlines how to maintain, update, and collaborate on the FUNDESTEAM Chatbot using GitHub.
+It assumes you already have the repository cloned locally.
+
+---
+
+#### A. Branching Strategy
+
+A clean branch structure ensures stability in your main codebase.
+
+**Recommended Branch Types:**
+
+| Branch           | Purpose                                                             |
+| ---------------- | ------------------------------------------------------------------- |
+| `main`           | Production-ready code only.                                         |
+| `dev`            | Active development branch where all features are tested.            |
+| `feature/<name>` | New features, fixes, or updates. Example: `feature/rag-integration` |
+| `docs`           | Documentation-only changes (e.g., README, manuals).                 |
+
+**Typical workflow:**
+
+1. Create a feature branch from `dev`:
+
+   ```bash
+   git checkout dev
+   git pull origin dev
+   git checkout -b feature/update-classifier
+   ```
+
+2. Work on your changes, commit regularly:
+
+   ```bash
+   git add .
+   git commit -m "Improved classify.py with better category detection"
+   ```
+
+3. Push the branch:
+
+   ```bash
+   git push origin feature/update-classifier
+   ```
+
+4. Open a **Pull Request (PR)** on GitHub from your feature branch to `dev`.
+
+---
+
+#### B. Updating Your Local Repository
+
+Always pull the latest changes before working:
+
+```bash
+git checkout dev
+git pull origin dev
+```
+
+If you encounter merge conflicts:
+
+1. Open the affected file in Visual Studio Code.
+2. Look for conflict markers:
+
+   ```
+   <<<<<<< HEAD
+   your changes
+   =======
+   incoming changes
+   >>>>>>> origin/dev
+   ```
+3. Manually merge, save, and then run:
+
+   ```bash
+   git add .
+   git commit -m "Resolved merge conflicts"
+   git push origin dev
+   ```
+
+---
+
+#### C. Keeping Dependencies Synced
+
+When someone adds or updates dependencies:
+
+* **Backend:**
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+* **Frontend:**
+
+  ```bash
+  cd chatbot-frontend
+  yarn install
+  ```
+
+To update dependency lists after installing new packages:
+
+* **Python:**
+
+  ```bash
+  pip freeze > requirements.txt
+  ```
+
+* **Frontend:**
+
+  ```bash
+  yarn install && yarn dedupe
+  ```
+
+Commit these updated dependency files when done.
+
+---
+
+#### D. Version Control Best Practices
+
+* Always include a clear commit message describing *what* changed and *why*.
+* Avoid committing temporary files or sensitive data.
+  Ensure `.env`, `.venv/`, and `node_modules/` are listed in `.gitignore`.
+* Never commit your API key or any credentials.
+* Before pushing large changes, test both backend and frontend locally.
+* After merging a PR into `dev`, run both servers to confirm stability before merging into `main`.
+
+---
+
+#### E. GitHub Issues and Pull Requests
+
+* Use **Issues** to track bugs, feature requests, or documentation updates.
+* Use **Pull Requests** to merge new code into `dev` or `main`.
+* Each PR should reference its corresponding issue (e.g., “Fixes #12”).
+* Add a short summary and screenshots if relevant.
+
+---
+
+#### F. Tagging and Releases
+
+Once a version is stable and merged into `main`, tag it for future reference:
+
+```bash
+git checkout main
+git pull origin main
+git tag -a v1.0.0 -m "Initial stable release"
+git push origin v1.0.0
+```
+
+Use semantic versioning:
+`MAJOR.MINOR.PATCH` (e.g., `v1.2.3`)
+
+---
+
+#### G. Suggested GitHub Folder Hygiene
+
+Keep the repository clean and organized:
+
+| Folder / File              | Purpose                                            |
+| -------------------------- | -------------------------------------------------- |
+| `.github/workflows/`       | (Optional) CI/CD or linting automation scripts     |
+| `docs/`                    | Manuals, research papers, and documentation        |
+| `chatbot-frontend/`        | Frontend code                                      |
+| `classify.py`, `server.py` | Backend code                                       |
+| `.gitignore`               | Prevents committing sensitive or unnecessary files |
+
+---
+
+By following this workflow, contributors can maintain a clean, traceable, and production-ready development environment while avoiding version conflicts or deployment errors.
+
 
 
 ---
