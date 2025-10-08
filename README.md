@@ -1,42 +1,96 @@
 # FUNDESTEAM Chatbot
 
+
+![Python](https://img.shields.io/badge/Python-3.10.0-blue)
+![Node](https://img.shields.io/badge/Node-24.7.0-green)
+![Yarn](https://img.shields.io/badge/Yarn-4.9.1-purple)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+[![GitHub issues](https://img.shields.io/github/issues/Bleedingmetal/FUNDESTEAM)](https://github.com/Bleedingmetal/FUNDESTEAM/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Bleedingmetal/FUNDESTEAM)](https://github.com/Bleedingmetal/FUNDESTEAM/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/Bleedingmetal/FUNDESTEAM)](https://github.com/Bleedingmetal/FUNDESTEAM/stargazers)
+![Last Commit](https://img.shields.io/github/last-commit/Bleedingmetal/FUNDESTEAM)
+![OpenAI API](https://img.shields.io/badge/OpenAI-Required-green)
+
+
+
+
+
+
 An AI-powered tutoring assistant built with **React + TypeScript (Vite)** on the frontend and **Python + Flask** on the backend. The chatbot is designed to help students prepare for and learn concepts related to the **WRO (World Robot Olympiad)** competition.
 
 This guide provides both a **Quick Setup** for experienced users and a **Full Beginner Setup** for those with no technical background.
 
----
-### Table of Contents
+### Table of Contents 
 
-1. [System Requirements](#1-system-requirements)
-2. [Quick Setup for Experienced Users](#2-quick-setup-for-experienced-users)
-3. [Full Detailed Setup for Beginners](#3-full-detailed-setup-for-beginners)
-   - [1. Required Tools](#1-required-tools)
-   - [2. Install Visual Studio Code](#2-install-visual-studio-code)
-   - [3. Install Node.js](#3-install-nodejs)
-   - [4. Clone Repository](#4-clone-repository)
-4. [Backend Setup](#4-backend-setup)
-5. [Frontend Setup](#5-frontend-setup)
-6. [Environment Variables](#6-environment-variables)
-7. [Running the Backend](#7-running-the-backend)
-8. [Running the Frontend](#8-running-the-frontend)
-9. [Project Structure](#9-project-structure)
-10. [Common Errors and Fixes](#10-common-errors-and-fixes)
-11. [Interacting with the Chatbot](#11-interacting-with-the-chatbot)
-12. [Updating the Code](#12-updating-the-code)
-13. [Adding a New Script](#13-adding-a-new-script)
-14. [Testing a Category Independently](#14-testing-a-category-independently)
-15. [Configuring Classify.py](#15-configuring-classifypy)
-16. [Frontend Features](#16-frontend-features)
-17. [Adding a New Category](#17-adding-a-new-category)
+1. [Before You Begin](#before-you-begin)
+2. [How to Get Your OpenAI API Key](#how-to-get-your-openai-api-key)
+3. [System Requirements](#system-requirements)
+4. [Quick Setup (for experienced users)](#quick-setup-for-experienced-users)x 
+5. [Full Detailed Setup (for beginners)](#full-detailed-setup-for-beginners)
+
+   * [1. Required Tools](#1-required-tools)
+   * [2. Install Visual Studio Code](#2-install-visual-studio-code)
+   * [3. Install Git](#3-install-git)
+   * [4. Clone the Repository](#4-clone-the-repository)
+   * [5. Install Python 3.10.0](#5-install-python-3100)
+   * [6. Set Up the Backend](#6-set-up-the-backend)
+   * [7. Install Node.js 24.7.0](#7-install-nodejs-2470)
+   * [8. Install Yarn 4.9.1](#8-install-yarn-491)
+   * [9. Set Up the Frontend](#9-set-up-the-frontend)
+   * [10. Running the Chatbot](#10-running-the-chatbot)
+   * [11. Testing the Backend](#11-testing-the-backend)
+   * [12. Folder Structure](#12-folder-structure)
+   * [13. Troubleshooting](#13-troubleshooting)
+   * [14. Stopping the Servers](#14-stopping-the-servers)
+   * [15. Completion](#15-completion)
+   * [16. Common Questions for Beginners](#16-common-questions-for-beginners)
+   * [17. Adding a New Category](#17-adding-a-new-category)
+
 ---
+
 ### Advanced Backend Guidelines
+
 18. [Best Practices for Prompt Writing](#18-best-practices-for-prompt-writing)
 19. [Testing and Debugging](#19-testing-and-debugging)
-20. [Integrating RAG or External Docs](#20-integrating-rag-or-external-docs)
-21. [Security and API Considerations](#21-security-and-api-considerations)
-22. [GitHub Workflow](#22-github-workflow)
-23. [License](#23-license)
+20. [Adding Special Characters Support](#20-adding-special-characters-support)
+21. [Integrating RAG or External Documentation](#21-integrating-rag-or-external-documentation)
+22. [Model Upgrades and Performance Considerations](#22-model-upgrades-and-performance-considerations)
+23. [Security Considerations](#23-security-considerations)
+24. [GitHub Workflow & Project Management](#24-github-workflow--project-management)
+25. [Best Practices Recap](#25-best-practices-recap)
+
 ---
+
+26. [Author](#author)
+27. [License (MIT)](#license-mit)
+
+
+---
+## Before You Begin
+
+* Make sure you have a stable internet connection
+* At least 2 GB free on your computer
+* An OpenAI account/ an email you can use to create an account
+
+---
+
+### How to Get Your OpenAI API Key
+
+To connect the FUNDESTEAM Chatbot with OpenAI services, follow these steps:
+
+1. Go to [https://platform.openai.com/account/api-keys](https://platform.openai.com/account/api-keys).
+2. Log in or create an OpenAI account.
+3. Click **Create new secret key**.
+4. Copy and save the generated key in notepad etc. &ndash; you will **not** be able to view it again.
+
+> Note: Do **NOT** share your API key publicly or commit it to GitHub.
+
+
+
+
+
+
 
 ## System Requirements
 
@@ -48,7 +102,7 @@ This guide provides both a **Quick Setup** for experienced users and a **Full Be
 
 ---
 
-## Quick Setup (for experienced users)
+### Quick Setup (For Experienced Users)
 
 If you already have **Python 3.10.0**, **Node.js 24.7.0**, and **Yarn 4.9.1** installed:
 
@@ -74,7 +128,7 @@ start.bat
 
 ---
 
-## Full Detailed Setup (for beginners)
+### Full Detailed Setup (For Beginners)
 
 ### 1. Required Tools
 
@@ -297,7 +351,12 @@ FUNDESTEAM/
 │   ├── yarn.lock             # Yarn lock file
 │   └── ...                   # Other frontend files
 │
-├── server.py                 # Flask backend
+├── server.py                 # Flask backend 
+├── script1.py                # Script with prompt geared towards Coding help
+├── script2.py                # Script with prompt geared towards Mechanical Design help
+├── script3.py                # Script with prompt geared towards WRO Rules help
+├── script4.py                # Script with prompt geared towards WRO Competition help
+├──  script5.py               # Script with prompt geared towards Technical Specifications help
 ├── classify.py               # GPT-powered classification
 ├── requirements.txt          # Python dependencies
 ├── .env.example              # Example environment file
@@ -379,7 +438,7 @@ A: Rename `.env.example` to `.env` and replace the placeholder with your key lik
 OPENAI_API_KEY=your_api_key_here
 ```
 
-**Q: The chatbot doesn’t respond in the frontend—what should I check?**
+**Q: The chatbot doesn’t respond in the frontend &mdash; what should I check?**
 A: Make sure:
 
 1. The backend is running (`python server.py`)
@@ -399,6 +458,8 @@ A: Press `Ctrl + C` in any terminal running the app. Both frontend and backend s
 
 ---
 ### 17. Adding a New Category 
+
+>**Important: Do not reuse numbers reserved for debugging (6, 7, 8).**
 
 You can add new categories to the chatbot by creating a new script (`script9.py`) and updating `classify.py` so the AI can route questions correctly.
 
@@ -520,7 +581,7 @@ Answer: Step-by-step reasoning or pseudocode. Only provide Python code if explic
 
 * Make sure new categories added to `engineered_prompt` match exactly the number used in `classify.py` (e.g., 9 &rarr; script9.py).
 * Explicitly describe what kinds of questions should go to the new category, so the AI can confidently select it.
->**Important: Do not reuse numbers reserved for debugging (6, 7, 8).**
+
 
 ---
 ### *Advanced Backend Guidlines*
@@ -645,7 +706,7 @@ It assumes you already have the repository cloned locally.
 
 ---
 
-#### A. Branching Strategy
+### A. Branching Strategy
 
 A clean branch structure ensures stability in your main codebase.
 
@@ -685,7 +746,7 @@ A clean branch structure ensures stability in your main codebase.
 
 ---
 
-#### B. Updating Your Local Repository
+### B. Updating Your Local Repository
 
 Always pull the latest changes before working:
 
@@ -716,7 +777,7 @@ If you encounter merge conflicts:
 
 ---
 
-#### C. Keeping Dependencies Synced
+### C. Keeping Dependencies Synced
 
 When someone adds or updates dependencies:
 
@@ -751,7 +812,7 @@ Commit these updated dependency files when done.
 
 ---
 
-#### D. Version Control Best Practices
+### D. Version Control Best Practices
 
 * Always include a clear commit message describing *what* changed and *why*.
 * Avoid committing temporary files or sensitive data.
@@ -762,7 +823,7 @@ Commit these updated dependency files when done.
 
 ---
 
-#### E. GitHub Issues and Pull Requests
+### E. GitHub Issues and Pull Requests
 
 * Use **Issues** to track bugs, feature requests, or documentation updates.
 * Use **Pull Requests** to merge new code into `dev` or `main`.
@@ -771,7 +832,7 @@ Commit these updated dependency files when done.
 
 ---
 
-#### F. Tagging and Releases
+### F. Tagging and Releases
 
 Once a version is stable and merged into `main`, tag it for future reference:
 
@@ -787,7 +848,7 @@ Use semantic versioning:
 
 ---
 
-#### G. Suggested GitHub Folder Hygiene
+### G. Suggested GitHub Folder Hygiene
 
 Keep the repository clean and organized:
 
