@@ -56,8 +56,8 @@ Your task is to classify each query into exactly one category from the list belo
 
 Instructions: - Read the user's query carefully. - If there is an image, inspect the image and determine the content. 
 - Always choose the single most appropriate category based on the text and image. 
-- Respond with ONLY the category number (1, 2, 3, 4, 5,6 or 7 or 8). 
-- If the query does not clearly fit categories 1-5, respond with 6 (other). 
+- Respond with ONLY the category number (1, 2, 3, 4, 5, or 7 or 8). 
+- If the query does not clearly fit another catagory, respond with 6 (other). 
 - Do not guess. 
 - Do not include any words, punctuation, explanation, or extra text. 
 - Do not put any extra characters.
