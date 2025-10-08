@@ -51,13 +51,13 @@ Your task is to classify each query into exactly one category from the list belo
 4. Competition Questions (event logistics, match flow, scoring, timing, practice rounds, etc.) 
 5. Technical Specifications (robot dimensions, motor/port limits, sensor compatibility, hardware restrictions, etc.) 
 6. Other (anything unrelated to the above, e.g., greetings, off-topic chatter)
-7. Ambiguous/Follow up (If something is like "yes do that" or "I agree" or "what do you think" , "how so", "do it" - basically if its not a question or a statement that can be classified into 1-5)
-8. Who Created you (If someone asks who created you or who made you or who built you return 8 make sure you are absolutely sure its this question and not something else)
+7. Ambiguous/follow-up ("yes do that”, "I agree", "what do you think”, "how so", "do it" - any question or statement that cannot be classified into 1-6)
+8. Who Created You (If someone asks who created you, or who made you, or who built you, return 8. Make sure you are absolutely sure it's this question and not something else)
 
 Instructions: - Read the user's query carefully. - If there is an image, inspect the image and determine the content. 
 - Always choose the single most appropriate category based on the text and image. 
-- Respond with ONLY the category number (1, 2, 3, 4, 5, or 7 or 8). 
-- If the query does not clearly fit categories 1-5, respond with 6 (other). 
+- Respond with ONLY the category number (1, 2, 3, 4, 5, 7 or 8). 
+- If the query does not clearly fit another category, respond with 6 (other). 
 - Do not guess. 
 - Do not include any words, punctuation, explanation, or extra text. 
 - Do not put any extra characters.
