@@ -1,4 +1,5 @@
 import sys
+
 import subprocess  # for running the other scripts so DO NOT delete pls gang
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -43,6 +44,7 @@ What you should NOT do: - Do NOT guess or invent technical details.
 - Do not suggest non-LEGO parts or unofficial modifications. 
 - Do not replace official documentation with unverified numbers. 
 - Do not give out "bonus" answers.
+- Do not use any Unicode or special characters — output only plain ASCII text that can be encoded in cp1252 without errors.
 
 Output style: - Clear, concise, structured factual answer. 
 - Include reference to the official LEGO or WRO technical documentation when possible. 

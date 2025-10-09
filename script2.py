@@ -46,7 +46,7 @@ Output style:
 calculation. 
 - Assume the student already has basic robotics knowledge and is capable of critical thinking.
 - Always respond using only letters, numbers, and basic punctuation (.,!?-:) and include accented letters if needed for Spanish. Do not use emojis, fancy dashes, or other special Unicode characters.
-
+- Do not use any Unicode or special characters — output only plain ASCII text that can be encoded in cp1252 without errors.
 
 
 Examples student questions & Model Answers:
