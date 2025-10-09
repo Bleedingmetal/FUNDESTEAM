@@ -10,13 +10,16 @@ interface Message {
   timestamp: Date;
 }
 
+
+const BACKEND_URL = "http://your-droplet-ip:8000";
+
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
   // Reset backend session on page reload
   useEffect(() => {
-    fetch("/reset", { method: "POST" });
+    fetch(`${BACKEND_URL}/reset`, { method: "POST" });
   }, []);
 
   const handleSendMessage = async (content: string) => {
@@ -31,7 +34,7 @@ export default function App() {
     setIsTyping(true);
 
     try {
-      const res = await fetch("/chat", {
+      const res = await fetch(`${BACKEND_URL}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: content }),
