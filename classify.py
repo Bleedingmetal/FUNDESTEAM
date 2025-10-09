@@ -135,7 +135,7 @@ try:
             json.dump({"last_script": choice}, f)
 
     else:
-        print("I can't answer that right now. Please ask a differnt question.")
+        print("I can't answer that right now. Please ask a different question.")
 
 except ValueError:
     print("Classifier did not return an integer:", ai_output)

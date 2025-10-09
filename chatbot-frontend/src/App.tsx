@@ -10,8 +10,9 @@ interface Message {
   timestamp: Date;
 }
 
+ 
+const BACKEND_URL = "http://localhost:8000";
 
-const BACKEND_URL = "https://entrenador.fundesteam.org/";
 
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
