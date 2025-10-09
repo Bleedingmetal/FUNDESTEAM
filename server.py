@@ -3,7 +3,6 @@ from flask_cors import CORS
 import subprocess
 import os
 
-# Point static_folder to your React build folder
 app = Flask(__name__, static_folder="static")
 CORS(app)
 
@@ -65,16 +64,10 @@ def reset():
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve_frontend(path):
-    # Serve JS/CSS/assets from static folder
-    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
-        return send_from_directory(app.static_folder, path)
-    # Serve index.html for all other routes (React Router)
-    return send_from_directory(app.static_folder, "index.html")
+    if path != "" and os.path.exists(os.path.join("static", path)):
+        return send_from_directory("static", path)
+    return send_from_directory("static", "index.html")
 
 if __name__ == "__main__":
     from waitress import serve
-    import os
-
-    # Use the PORT env variable if provided (App Platform requirement)
-    port = int(os.environ.get("PORT", 8000))
-    serve(app, host="0.0.0.0", port=port)
+    serve(app, host="0.0.0.0", port=8000)
