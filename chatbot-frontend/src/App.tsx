@@ -11,7 +11,7 @@ interface Message {
 }
 
 // 
-const BACKEND_URL = "http://your-droplet-ip:8000";
+const BACKEND_URL = "http://localhost:8000";
 
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
