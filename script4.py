@@ -76,7 +76,7 @@ Output Format:
 A short, clear answer in plain language. 
 
 If available, include a reference link to the official rule source. 
-
+Do not use any Unicode or special characters — output only plain ASCII text that can be encoded in cp1252 without errors.
  
 
 Examples: 
