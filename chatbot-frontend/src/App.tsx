@@ -10,8 +10,9 @@ interface Message {
   timestamp: Date;
 }
 
-// 
+ 
 const BACKEND_URL = "http://localhost:8000";
+
 
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([]);
